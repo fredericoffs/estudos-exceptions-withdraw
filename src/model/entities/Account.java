@@ -8,7 +8,7 @@ public class Account {
 	private String holder;
 	private Double balance;
 	private Double withdrawLimit;
-	
+
 	public Account() {
 	}
 
@@ -50,20 +50,20 @@ public class Account {
 	public void deposit(Double amount) {
 		balance += amount;
 	}
-	
+
 	public void withdraw(Double amount) {
-		if(amount > withdrawLimit) {
+		if (amount > withdrawLimit) {
 			throw new DomainException("The amount exceeds withdraw limit");
 		}
-		if ((balance - amount) < 0) {
+		if (amount > balance) {
 			throw new DomainException("Not enough balance");
 		}
+		balance -= amount;
 	}
-	
+
 	@Override
 	public String toString() {
-		return "New balance: " 
-				+ String.format("%.2f", balance);
+		return "New balance: " + String.format("%.2f", balance);
 	}
-	
+
 }
